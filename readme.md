@@ -11,9 +11,9 @@ git clone https://github.com/zeluspudding/rasELK.git
 
 Logstash/Elasticsearch/Kibana
 -----------------------------
-You can run this demo also using the ELK-Stack. This way you can visualize the data in a nice way.
+Let''s visualize sensor data in awesome ways.
 
-Install the ELK Stack using (execute it in the root path of this Git repo, you should use a better host than a RaspberryPi since all components are hungry for Memory and CPU):
+Install the ELK Stack (execute it in the root path of this Git repo. You should use a better host than a RaspberryPi since all components are Memory and CPU hungry):
 
 ```bash
 sudo add-apt-repository -y ppa:webupd8team/java
@@ -37,7 +37,7 @@ curl -XPUT 'http://localhost:9200/kibana-int/'
 curl -XPUT --data-binary '@../../../dashboard-source.json' 'http://localhost:9200/kibana-int/dashboard/Sonic%20Distancemeter'
 ```
 
-Now your server stack is running. Go to your RaspberryPi and adopt `JSON_HOST` in `distancemeter_json.py` so the Python
+Now your server stack is running. Go to your RaspberryPi and adapt `JSON_HOST` in `distancemeter_json.py` so the Python
 script knows where to send the JSON objects using TCP. Then run:
 
 ```bash
@@ -45,24 +45,4 @@ $ sudo python distancemeter_json.py
 ```
 
 Your RaspberryPi will send every 0.2sec a message over the line. At this point open your browser. Kibana runs on port 9292,
-iot-distancemeter
-======================
-
-This is project demonstrates how a RaspberryPi can be used to stream sensor data to an ELK (Logstash/Elasticsearch/Kibana) server. It is adapted from Mark Paluch''s iot-distancemeter at https://github.com/mp911de/iot-distancemeter.
-
-
-
-Clone this repo on your RaspberryPi and your host where your server (Logstash) is hosted.
-
-```bash
-git clone https://github.com/zeluspudding/rasELK.git
-```
-
-```
-
-Logstash/Elasticsearch/Kibana
------------------------------
-You can run this demo also using the ELK-Stack. This way you can visualize the data in a nice way.
-
-Install the ELK Stack using (execute it in the root path of this Git repo, you should use a better host than a RaspberryPi since all components are hungry for Memory and CPU):
 
