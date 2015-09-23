@@ -1,70 +1,16 @@
 iot-distancemeter
 ======================
 
-This is an example project that demonstrates a ultra-sonic sensor [HC-SR04](http://www.micropik.com/PDF/HCSR04.pdf) connected to a RaspberryPi.
-The original connection scheme and code are from http://www.tutorials-raspberrypi.de/gpio/entfernung-messen-mit-ultraschallsensor-hc-sr04/ adopted to
-sending the data to either Logstash/Elasticsearch/Kibana or via MQTT.
+This is project demonstrates how a RaspberryPi can be used to stream sensor data to an ELK (Logstash/Elasticsearch/Kibana) server. It is adapted from Mark Paluch''s iot-distancemeter at https://github.com/mp911de/iot-distancemeter.
 
-<img src="images/iot-distancemeter.jpg" title="RaspberryPi with mounted HC-SR04" width="300"/>
 
-Either way, clone this repo on your RaspberryPi and your host where your server (Logstash or MQTT broker) is hosted.
+
+Clone this repo on your RaspberryPi and your host where your server (Logstash) is hosted.
 
 ```bash
-$ git clone https://github.com/mp911de/iot-distancemeter.git
+git clone https://github.com/zeluspudding/rasELK.git
 ```
 
-MQTT
--------
-[MQTT](http://mqtt.org) is a machine to machine communication protocol in a pub/sub manner. To run the code you have to wire the ultrasonic
-sensor to your RaspberryPi and you need python with the `paho-mqtt` package.
-
-First you need a MQTT broker. I used [HiveMQ](http://hivemq.org) (execute it in the root path of this Git repo):
-
-```bash
-$ mkdir -p target
-$ cd target
-$ curl http://www.hivemq.com/wp-content/uploads/hivemq-2.2.1.zip > hivemq-2.2.1.zip
-$ unzip hivemq-2.2.1.zip
-$ cd hivemq-2.2.1/bin
-$ chmod a+x *.sh
-$ ./run.sh
-```
-
-Then continue on your RaspberryPi.
-
-If you do not have the `paho-mqtt` package installed, execute (assuming you have `pip` installed):
-
-```bash
-$ sudo pip install paho-mqtt
-```
-
-Alternative using `easy_install`
-
-```bash
-$ sudo easy_install paho-mqtt
-```
-
-Adopt `MQTT_HOST` in `distancemeter_mqtt.py` to your environment and run it using
-
-```bash
-$ sudo python distancemeter_mqtt.py
-```
-
-Now the sensor performs measurement and publishes messages in the topic `sensors/distancemeter`.
-
-To see something, you can start `mqtt_consumer.py` after adopting `MQTT_HOST` in the file.
-
-```bash
-$ python mqtt_consumer.py
-```
-
-You should see some output like:
-
-```
-Connected with result code 0
-sensors/distancemeter {"distance": 104.49538230895996, "message": "distance 104.5 cm", "hostname": "iotberry"}
-sensors/distancemeter {"distance": 103.15831899642944, "message": "distance 103.2 cm", "hostname": "iotberry"}
-sensors/distancemeter {"distance": 103.20738554000854, "message": "distance 103.2 cm", "hostname": "iotberry"}
 ```
 
 Logstash/Elasticsearch/Kibana
