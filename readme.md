@@ -19,8 +19,8 @@ Install the ELK Stack (execute it in the root path of this Git repo. You should 
 sudo add-apt-repository -y ppa:webupd8team/java
 sudo apt-get update
 sudo apt-get -y install oracle-java8-installer
-mkdir -p target
-cd target
+mkdir -p ELK
+cd ELK
 curl https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.3.2.zip > elasticsearch-1.3.2.zip
 curl https://download.elasticsearch.org/logstash/logstash/logstash-1.4.2.zip > logstash-1.4.2.zip
 unzip elasticsearch-1.3.2.zip
