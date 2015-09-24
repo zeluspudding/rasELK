@@ -7,7 +7,7 @@ from cputempmeter import getCPUtemperature
 
 # Logstash TCP/JSON Host
 JSON_PORT = 9400
-JSON_HOST = '104.131.86.53'
+JSON_HOST = '104.131.22.155'
 
 CM_PER_SEC_AIR = 34300
 
