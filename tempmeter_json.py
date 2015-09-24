@@ -1,4 +1,4 @@
-__author__ = 'mp911de'
+__author__ = 'consious'
 
 import socket
 import json
@@ -7,7 +7,7 @@ from cputempmeter import getCPUtemperature
 
 # Logstash TCP/JSON Host
 JSON_PORT = 9400
-JSON_HOST = '192.168.55.34'
+JSON_HOST = '104.131.86.53'
 
 CM_PER_SEC_AIR = 34300
 
