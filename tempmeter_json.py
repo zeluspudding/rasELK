@@ -3,7 +3,7 @@ __author__ = 'mp911de'
 import socket
 import json
 import time
-from temperaturemeter import get_temperature,cleanup
+from cputempmeter import getCPUtemperature
 
 # Logstash TCP/JSON Host
 JSON_PORT = 9400
@@ -18,15 +18,14 @@ if __name__ == '__main__':
         s.connect((JSON_HOST, JSON_PORT))
 
         while True:
-            temperature = get_temperature()
+            temperature = getCPUtemperature()
             data = {'message': 'temperature %.1f cm' % temperature, 'temperature': temperature, 'hostname': socket.gethostname()}
 
             s.send(json.dumps(data))
             s.send('\n')
-            print ("Received temperature = %.1f cm" % temperature)
+            print ("Received temperature = %.1f C" % temperature)
             time.sleep(0.2)
 
     # interrupt
     except KeyboardInterrupt:
         print("Programm interrupted")
-        cleanup()
